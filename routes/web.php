@@ -22,7 +22,6 @@ Route::get('/', function () {
 });
 
 
-# Show All posts
 Route::get('post',function(){
     return view('post');
 });
