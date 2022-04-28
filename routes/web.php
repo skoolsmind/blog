@@ -14,6 +14,7 @@ use function Symfony\Component\String\jsonSerialize;
 |
 */
 
+#show all pages
 Route::get('/', function () {
 
     return view('posts');
