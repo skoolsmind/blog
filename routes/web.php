@@ -14,8 +14,11 @@ use function Symfony\Component\String\jsonSerialize;
 |
 */
 
+<<<<<<< HEAD
 #show all pages
 #show home pages
+=======
+>>>>>>> parent of 69a1531... add comment-3
 Route::get('/', function () {
 
     return view('posts');
