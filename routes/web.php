@@ -1,8 +1,8 @@
 <?php
 
-use Carbon\Carbon;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-use function Symfony\Component\String\jsonSerialize;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,21 +15,14 @@ use function Symfony\Component\String\jsonSerialize;
 |
 */
 
-
-#show all pages
-#test
 Route::get('/posts', function () {
-
     return view('posts');
 });
 
-
 Route::get('post/{post}',function($slug){
-    if(!file_exists(    $path = __DIR__ . "/../resources/views/posts/{$slug}.html")){
-        return redirect('/posts');
-    }
 
-    $post = cache()->remember("posts.{$slug}",Carbon::now()->addSeconds(5),fn() => file_get_contents($path));
+    return view('post',[
+        'post'=> Post::find($slug)
+    ]);
 
-    return view('post',['post'=>$post]);
 })->where('post','[A-z_\-]+');
