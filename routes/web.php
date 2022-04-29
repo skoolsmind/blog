@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use function Symfony\Component\String\jsonSerialize;
 
@@ -28,10 +29,13 @@ Route::get('post/{post}',function($slug){
     $path = __DIR__ . "/../resources/views/posts/{$slug}.html";
 
     if(!file_exists($path)){
-        abort(404);
+        return redirect('/posts');
     }
 
-    $post = file_get_contents($path);
+    $post = cache()->remember("posts.{$slug}",now()->addSeconds(5),function() use($path){
+        var_dump('file_get_contents');
+        return file_get_contents($path);
+    });
 
     return view('post',[
         'post'=>$post
