@@ -17,12 +17,23 @@ use function Symfony\Component\String\jsonSerialize;
 
 #show all pages
 #test
-Route::get('/', function () {
+Route::get('/posts', function () {
 
     return view('posts');
 });
 
 
-Route::get('post',function(){
-    return view('post');
-});
+Route::get('post/{post}',function($slug){
+
+    $path = __DIR__ . "/../resources/views/posts/{$slug}.html";
+
+    if(!file_exists($path)){
+        abort(404);
+    }
+
+    $post = file_get_contents($path);
+
+    return view('post',[
+        'post'=>$post
+    ]);
+})->where('post','[A-z_\-]+');
