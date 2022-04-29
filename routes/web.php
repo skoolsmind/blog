@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/posts', function () {
-    return view('posts');
+
+    return view('posts',[
+        'posts'=>Post::all()
+    ]);
 });
 
 Route::get('post/{post}',function($slug){
