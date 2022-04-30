@@ -13,13 +13,13 @@
     <?php foreach($posts as $post):?>
         <article>
             <h1>
-                <a href="/post/<?=$post->slug?>">
-                    <?php echo $post->title;?>
+                <a href="/post/{{$post->slug}}">
+                    {{$post->title}}
                 </a>
 
             </h1>
             <div>
-                <p><?php echo $post->excerpt;?></p>
+                <p>{{$post->excerpt}}</p>
             </div>
 
         </article>

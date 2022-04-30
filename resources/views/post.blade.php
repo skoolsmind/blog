@@ -11,11 +11,11 @@
 <body>
 <article>
     <h1>
-        <?php echo $post->title?>
+        {{$post->title}}
     </h1>
     <div>
         <p>
-            <?php echo $post->body?>
+            {!! $post->body !!}
         </p>
 
     </div>
