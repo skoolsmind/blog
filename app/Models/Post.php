@@ -43,16 +43,20 @@ class Post //extends Model
 
     public static function all()
     {
-        //collect array into laravel collection
-        return collect(File::files(resource_path("views/posts")))
-            ->map(fn($file) => YamlFrontMatter::parseFile($file))
-            ->map(fn($document) => new Post(
-                $document->title,
-                $document->date,
-                $document->excerpt,
-                $document->body(),
-                $document->slug,
-            ))
-            ->sortByDesc('date');
+
+        return cache()->rememberForever('posts.all',function(){
+            return collect(File::files(resource_path("views/posts")))
+                ->map(fn($file) => YamlFrontMatter::parseFile($file))
+                ->map(fn($document) => new Post(
+                    $document->title,
+                    $document->date,
+                    $document->excerpt,
+                    $document->body(),
+                    $document->slug,
+                ))
+                ->sortByDesc('date');
+        });
+
+
     }
 }
