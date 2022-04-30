@@ -9,9 +9,10 @@
 
     </head>
     <body>
-    
+
     @foreach($posts as $post)
-        <article>
+        @dd($loop)
+        <article class="@if($loop->last || $loop->even) mb-{{$loop->index}} @endif">
             <h1>
                 <a href="/post/{{$post->slug}}">
                     {{$post->title}}
