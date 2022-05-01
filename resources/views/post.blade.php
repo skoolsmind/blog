@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout')
 
-    <title>Laravel</title>
-    <link rel="stylesheet" href="/app.css">
-
-</head>
-<body>
+@section('content')
 <article>
     <h1>
         {{$post->title}}
@@ -25,5 +17,4 @@
 <a href="/posts">
     Go Back
 </a>
-</body>
-</html>
+@endsection
