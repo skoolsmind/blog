@@ -1,20 +1,23 @@
-@extends('layout')
 
-@section('content')
-<article>
-    <h1>
-        {{$post->title}}
-    </h1>
-    <div>
-        <p>
-            {!! $post->body !!}
-        </p>
 
-    </div>
+<x-layout>
+    <article>
+        <h1>
+            {{$post->title}}
+        </h1>
+        <div>
+            <p>
+                {!! $post->body !!}
+            </p>
 
-</article>
+        </div>
 
-<a href="/posts">
-    Go Back
-</a>
-@endsection
+    </article>
+
+    <a href="/posts">
+        Go Back
+    </a>
+
+</x-layout>
+
+
