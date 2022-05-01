@@ -3,7 +3,7 @@
         @foreach($posts as $post)
                 <article class="@if($loop->last || $loop->odd) mb-{{$loop->index}} @endif">
                     <h1>
-                        <a href="/post/{{$post->id}}">
+                        <a href="/post/{{$post->slug}}">
                             {{$post->title}}
                         </a>
 
