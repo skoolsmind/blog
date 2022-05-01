@@ -11,7 +11,7 @@
 <body>
 
 @yield('banner')
-@yield('content')
+{{$content}}
 
 </body>
 </html>
