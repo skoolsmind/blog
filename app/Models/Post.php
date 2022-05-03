@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    //protected $fillable = ['title','excerpt','body','id'];
+    //protected $fillable = ['title','excerpt','body','slug'];
 
     public function getRouteKeyName()
     {
@@ -24,9 +24,9 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function user()
+    public function author() //Larave assume that foreign key is author_id, but we have it in DB is user_id
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
 

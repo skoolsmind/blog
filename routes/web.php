@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -26,7 +27,8 @@ Route::get('/posts', function () {
 
 
     return view('posts',[
-        'posts'=>Post:: with('category')->get()->sortByDesc('created_at')
+        //'posts'=>Post::latest()->with('category')->get()->sortByDesc('created_at')
+         'posts'=>Post::latest()->with(['category','author'])->get()
     ]);
 });
 
@@ -40,6 +42,13 @@ Route::get('post/{post}',function(Post $post){
 
 Route::get('categories/{category:slug}',function(Category $category){
     return view('posts',[
-        'posts' => $category->posts
+        'posts' => $category->posts->load(['category','author'])
+    ]);
+});
+
+
+Route::get('authors/{author:username}',function(User $author){
+    return view('posts',[
+        'posts' => $author->posts->load(['category','author'])
     ]);
 });
