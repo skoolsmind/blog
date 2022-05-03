@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
-use function logger;
+
 
 
 /*
@@ -24,13 +24,9 @@ use function logger;
 
 Route::get('/posts', function () {
 
-    DB::listen(function($query){
-        //Log::info('foo');
-        //logger($query->sql);
-        logger($query->sql,$query->bindings);
-    });
+
     return view('posts',[
-        'posts'=>Post::all()->sortByDesc('created_at')
+        'posts'=>Post:: with('category')->get()->sortByDesc('created_at')
     ]);
 });
 
