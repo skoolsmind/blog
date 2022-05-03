@@ -4,6 +4,7 @@
             {{$post->title}}
         </h1>
         <p>
+            By <a href="#">Amr Sharkas </a> in
             <a href="/categories/{{$post->category->slug}}">
                 {{$post->category->name}}
             </a>
